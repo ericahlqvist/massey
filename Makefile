@@ -34,7 +34,7 @@ EXTRACFLAGS=
 #STATIC    = -static
 
 CC         = /usr/bin/gcc
-CPPFLAGS   = -I. #-I/usr/local/include -I/opt/homebrew/Cellar/pari/2.13.4/include
+CPPFLAGS   = -I. -I/usr/local/include -I/opt/homebrew/Cellar/pari/2.13.4/include
 LD         = /usr/bin/gcc
 LDFLAGS    = -O3 -Wall -fno-strict-aliasing -fomit-frame-pointer    -Wl,-search_paths_first 
 MODLD      = /usr/bin/gcc
@@ -44,7 +44,7 @@ EXTRALIBS  =
 
 RUNPTH     = 
 DLCFLAGS   = -fPIC
-LIBS       = -L/opt/sagemath/9.0/local/lib/ -lpari #-L/opt/homebrew/Cellar/pari/2.13.4/lib -lpari
+LIBS       = -L/usr/local/lib -lpari -L/opt/homebrew/Cellar/pari/2.13.4/lib -lpari
 
 RM = rm -f
 
