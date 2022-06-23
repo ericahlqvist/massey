@@ -62,11 +62,12 @@ GEN my_find_I2 (GEN LyAbs, GEN LyRel, GEN K, GEN sigma_y, GEN a2_vect, GEN J_vec
     // GEN rel_ideal = pol_x(fetch_user_var("relative"));
     GEN iJ = pol_x(fetch_user_var("iJ"));
     GEN iJ_div_a2 = pol_x(fetch_user_var("iJ_div_a2"));
-    printf("Hej\n");
+    
     int i;
     for (i = 1; i < glength(a2_vect)+1; i++)
     {
         div_a2 = idealhnf(LyAbs, gel(a2_vect, i));
+        printf("Hej\n");
         printf("Computing iI\n\n");
         iJ = rnfidealup0(LyRel, gel(J_vect, i),1);
         printf("Computing div(b1) + iI\n\n");
