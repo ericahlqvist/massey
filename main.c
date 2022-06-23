@@ -155,7 +155,7 @@ main (int argc, char *argv[])
 
     char file_name[100];
     int Dmod8 = -my_int%8;
-    sprintf(file_name, "%d_%dmod8.txt", p_int, Dmod8);
+    sprintf(file_name, "output/%d_%dmod8.txt", p_int, Dmod8);
     printf("%s", file_name);
     printf("\n");
 
