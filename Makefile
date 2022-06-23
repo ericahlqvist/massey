@@ -44,7 +44,7 @@ EXTRALIBS  =
 
 RUNPTH     = 
 DLCFLAGS   = -fPIC
-LIBS       = -L/usr/lib/x86_64-linux-gnu/ -lpari #-L/opt/homebrew/Cellar/pari/2.13.4/lib -lpari
+LIBS       = -L/opt/sagemath/9.0/local/lib/ -lpari #-L/opt/homebrew/Cellar/pari/2.13.4/lib -lpari
 
 RM = rm -f
 
