@@ -155,7 +155,22 @@ main (int argc, char *argv[])
 
     char file_name[100];
     int Dmod8 = -my_int%8;
-    sprintf(file_name, "output/%d_%dmod8.txt", p_int, Dmod8);
+    int Dmod16 = -my_int%16;
+    int mod;
+
+    if (Dmod8 == 3 || Dmod8 == 7) {
+        mod = 8;
+    }
+    else if (Dmod16 == 4 || Dmod16 == 8) {
+        mod = 16;
+    }
+    else {
+        printf(ANSI_COLOR_RED "Wrong discriminant\n\n" ANSI_COLOR_RESET);
+        pari_close();
+        exit(0);
+    }
+
+    sprintf(file_name, "output/%d_%dmod%d.txt", p_int, Dmod8, mod);
     printf("%s", file_name);
     printf("\n");
 
