@@ -1,6 +1,6 @@
 
 # change this TARGET to compile your own programs
-TARGET = extgcd
+TARGET = main
 SHELL  = /bin/sh
 
 DBGFLAGS   = -g -Wall
