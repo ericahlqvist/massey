@@ -1,6 +1,6 @@
 
 # change this TARGET to compile your own programs
-TARGET = main
+TARGET = extgcd
 SHELL  = /bin/sh
 
 DBGFLAGS   = -g -Wall
@@ -9,17 +9,17 @@ EXTRACFLAGS=
 #CFLAGS    = $(DBGFLAGS)
 
 CC         = /usr/bin/gcc
-CPPFLAGS   = -I. -I/NOBACKUP/ericahl/pari-lib.dbg/include
+CPPFLAGS   = -I. -I/NOBACKUP/ericahl/pari-lib/include
 LD         = /usr/bin/gcc
-LDFLAGS    = -DMEMSTEP=1048576 -g -Wall	-Wl,--export-dynamic
+LDFLAGS    = -O3 -Wall -ffp-contract=off -fno-strict-aliasing    -Wl,--export-dynamic
 MODLD      = /usr/bin/gcc
 MODLDFLAGS = -shared  $(CFLAGS) $(DLCFLAGS) -Wl,-shared
-EXTRAMODLDFLAGS = -lc -lm
+EXTRAMODLDFLAGS = -lc -lm -L/NOBACKUP/ericahl/pari-lib/lib -lpari
 EXTRALIBS  =
 
-RUNPTH     = -Wl,-rpath "/NOBACKUP/ericahl/pari-lib.dbg/lib"
+RUNPTH     = -Wl,-rpath "/NOBACKUP/ericahl/pari-lib/lib"
 DLCFLAGS   = -fPIC
-LIBS       = -lm -L/NOBACKUP/ericahl/pari-lib.dbg/lib -lpari
+LIBS       = -lm -L/NOBACKUP/ericahl/pari-lib/lib -lpari
 
 RM = rm -f
 
