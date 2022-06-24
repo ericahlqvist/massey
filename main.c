@@ -33,7 +33,7 @@ main (int argc, char *argv[])
     int sec;
     int msec;
     
-    pari_init(4000000000,500000);
+    pari_init(8000000000,500000);
     // printf("Initial adress: %ld\n", avma);
     // pari_sp limit = stack_lim(avma, 1);
     
@@ -45,7 +45,7 @@ main (int argc, char *argv[])
     p_int = atoi(argv[1]);
     my_int = atoi(argv[2]);
 
-    D = stoi(my_int);
+    D = stoi(-my_int);
     D_prime_vect = gel(factor(D), 1);
     
     // Define K.pol
@@ -69,6 +69,34 @@ main (int argc, char *argv[])
 
     GEN Lx_cyc = bnf_get_cyc(LxAbs);
     GEN Ly_cyc = bnf_get_cyc(LyAbs);
+
+    char file_name[100];
+    int Dmod8 = -my_int%8;
+    int Dmod16 = -my_int%16;
+    int mod;
+
+    if (Dmod8 == 3 || Dmod8 == 7) {
+        mod = 8;
+    }
+    else if (Dmod16 == 4 || Dmod16 == 8) {
+        mod = 16;
+    }
+    else {
+        printf(ANSI_COLOR_RED "Wrong discriminant\n\n" ANSI_COLOR_RESET);
+        pari_close();
+        exit(0);
+    }
+
+    sprintf(file_name, "output/%d_%dmod%d.txt", p_int, Dmod8, mod);
+    printf("%s", file_name);
+    printf("\n");
+
+    FILE *fptr;
+    fptr = fopen(file_name, "a");
+
+    pari_fprintf(fptr, "{\"p\": \"%d\", \"D\": \"%d\", \"K-cyc\": \"%Ps\", \"Lx-cyc\": \"%Ps\", \"Ly-cyc\": \"%Ps\", ", p_int, my_int, Kcyc, Lx_cyc, Ly_cyc);
+
+    fclose(fptr);
 
     GEN J_vect = my_find_p_gens(K, p);
 
@@ -153,47 +181,26 @@ main (int argc, char *argv[])
 
     int Z_det = smodis(gsub(gmul(gmael2(Zassenhaus_matrix, 1,1), gmael2(Zassenhaus_matrix, 2,2)), gmul(gmael2(Zassenhaus_matrix, 1,2), gmael2(Zassenhaus_matrix, 2,1))), p_int);
 
-    char file_name[100];
-    int Dmod8 = -my_int%8;
-    int Dmod16 = -my_int%16;
-    int mod;
-
-    if (Dmod8 == 3 || Dmod8 == 7) {
-        mod = 8;
-    }
-    else if (Dmod16 == 4 || Dmod16 == 8) {
-        mod = 16;
-    }
-    else {
-        printf(ANSI_COLOR_RED "Wrong discriminant\n\n" ANSI_COLOR_RESET);
-        pari_close();
-        exit(0);
-    }
-
-    sprintf(file_name, "output/%d_%dmod%d.txt", p_int, Dmod8, mod);
-    printf("%s", file_name);
-    printf("\n");
-
-    FILE *fptr;
+    
     fptr = fopen(file_name, "a");
     
 
     if (my_SQ_MAT_equal0(Zassenhaus_matrix))
     {
         printf(ANSI_COLOR_GREEN "Rank 0  ==> Infinite class field tower\n\n" ANSI_COLOR_RESET);
-        pari_fprintf(fptr, "{\"p\": \"%d\", \"D\": \"%d\", \"Z-rk\": \"0\", \"K-cyc\": \"%Ps\", \"Lx-cyc\": \"%Ps\", \"Ly-cyc\": \"%Ps\"},\n", p_int, my_int, Kcyc, Lx_cyc, Ly_cyc);
+        pari_fprintf(fptr, "\"Z-rk\": \"0\"},\n");
     }
     else if (Z_det == 0)
     {
         printf(ANSI_COLOR_YELLOW "Rank 1  ==> ZT (3,5), (5,7) or infinite class field tower\n\n" ANSI_COLOR_RESET);
-        pari_fprintf(fptr, "{\"p\": \"%d\", \"D\": \"%d\", \"Z-rk\": \"1\", \"K-cyc\": \"%Ps\", \"Lx-cyc\": \"%Ps\", \"Ly-cyc\": \"%Ps\", \"ZM\": \"%Ps\"},\n", p_int, my_int, Kcyc, Lx_cyc, Ly_cyc, Zassenhaus_matrix);
+        pari_fprintf(fptr, "\"Z-rk\": \"1\", \"ZM\": \"%Ps\"},\n", Zassenhaus_matrix);
     }
     else {
         printf(ANSI_COLOR_YELLOW "Rank 2  ==> ZT (3,3)\n\n" ANSI_COLOR_RESET);
-        pari_fprintf(fptr, "{\"p\": \"%d\", \"D\": \"%d\", \"Z-rk\": \"2\", \"K-cyc\": \"%Ps\", \"Lx-cyc\": \"%Ps\", \"Ly-cyc\": \"%Ps\", \"ZM\": \"%Ps\"},\n", p_int, my_int, Kcyc, Lx_cyc, Ly_cyc, Zassenhaus_matrix);
+        pari_fprintf(fptr, "\"Z-rk\": \"2\", \"ZM\": \"%Ps\"},\n", Zassenhaus_matrix);
     }
-    fclose(fptr);
     
+    fclose(fptr);
     
     
     printf(ANSI_COLOR_GREEN "Done! \n \n" ANSI_COLOR_RESET);

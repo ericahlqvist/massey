@@ -40,7 +40,7 @@ GEN my_ext(GEN base, GEN base_clf, int disc, GEN s, GEN p, GEN D_prime_vect, int
     // GEN p2red = q2;
     output(p1red);
     
-    GEN LxRel = rnfinit(base, p1red);
+    GEN LxRel = rnfinit(base, mkvec2(p1red, D_prime_vect));
     printf("---> LxRel <--- \n");
     
 
@@ -53,12 +53,10 @@ GEN my_ext(GEN base, GEN base_clf, int disc, GEN s, GEN p, GEN D_prime_vect, int
     output(p2red);
     // p2red = rnfpolredabs(base, p2red, 0);
     // output(p2red);
-    GEN LyRel = rnfinit(base, p2red);
+    GEN LyRel = rnfinit(base, mkvec2(p2red, D_prime_vect));
     printf("\n---> LyRel <--- \n");
     
     
-    
-
     GEN LyAbs = Buchall(rnf_get_polabs(LyRel), nf_FORCE, DEFAULTPREC);
     printf("---> LyAbs <--- \n\n");
     output(rnf_get_polabs(LyRel));
