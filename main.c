@@ -94,7 +94,7 @@ main (int argc, char *argv[])
     FILE *fptr;
     fptr = fopen(file_name, "a");
 
-    pari_fprintf(fptr, "{\"p\": \"%d\", \"D\": \"%d\", \"K-cyc\": \"%Ps\", \"Lx-cyc\": \"%Ps\", \"Ly-cyc\": \"%Ps\", ", p_int, my_int, Kcyc, Lx_cyc, Ly_cyc);
+    pari_fprintf(fptr, "{\"p\": \"%d\", \"D\": \"%d\", \"K-cyc\": \"%Ps\", \"Lx-cyc\": \"%Ps\", \"Ly-cyc\": \"%Ps\", \"Z-rk\": \"-\", \"ZM\": \"-\"},\n", p_int, my_int, Kcyc, Lx_cyc, Ly_cyc);
 
     fclose(fptr);
 
@@ -182,22 +182,40 @@ main (int argc, char *argv[])
     int Z_det = smodis(gsub(gmul(gmael2(Zassenhaus_matrix, 1,1), gmael2(Zassenhaus_matrix, 2,2)), gmul(gmael2(Zassenhaus_matrix, 1,2), gmael2(Zassenhaus_matrix, 2,1))), p_int);
 
     
-    fptr = fopen(file_name, "a");
     
+    FILE    *textfile;
+    char    *text;
+    long    numbytes;
+     
+    textfile = fopen(file_name, "r");
+     
+    fseek(textfile, -26, SEEK_END);
+    numbytes = ftell(textfile);
+    fseek(textfile, 0L, SEEK_SET);  
+ 
+    text = (char*)calloc(numbytes, sizeof(char));   
+ 
+    fread(text, sizeof(char), numbytes, textfile);
+    fclose(textfile);
+
+
+
+    fptr = fopen(file_name, "w");
+    fprintf(fptr, "%s", text);
 
     if (my_SQ_MAT_equal0(Zassenhaus_matrix))
     {
         printf(ANSI_COLOR_GREEN "Rank 0  ==> Infinite class field tower\n\n" ANSI_COLOR_RESET);
-        pari_fprintf(fptr, "\"Z-rk\": \"0\"},\n");
+        pari_fprintf(fptr, " \"Z-rk\": \"0\", \"ZM\": \"%Ps\"},\n", Zassenhaus_matrix);
     }
     else if (Z_det == 0)
     {
         printf(ANSI_COLOR_YELLOW "Rank 1  ==> ZT (3,5), (5,7) or infinite class field tower\n\n" ANSI_COLOR_RESET);
-        pari_fprintf(fptr, "\"Z-rk\": \"1\", \"ZM\": \"%Ps\"},\n", Zassenhaus_matrix);
+        pari_fprintf(fptr, " \"Z-rk\": \"1\", \"ZM\": \"%Ps\"},\n", Zassenhaus_matrix);
     }
     else {
         printf(ANSI_COLOR_YELLOW "Rank 2  ==> ZT (3,3)\n\n" ANSI_COLOR_RESET);
-        pari_fprintf(fptr, "\"Z-rk\": \"2\", \"ZM\": \"%Ps\"},\n", Zassenhaus_matrix);
+        pari_fprintf(fptr, " \"Z-rk\": \"2\", \"ZM\": \"%Ps\"},\n", Zassenhaus_matrix);
     }
     
     fclose(fptr);
