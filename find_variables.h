@@ -66,12 +66,12 @@ GEN my_find_I2 (GEN LyAbs, GEN LyRel, GEN K, GEN sigma_y, GEN a2_vect, GEN J_vec
     int i;
     for (i = 1; i < glength(a2_vect)+1; i++)
     {
-        output(gel(a2_vect, i));
         div_a2 = idealhnf0(LyAbs, gel(a2_vect, i), NULL);
         printf("Computing iI\n\n");
         iJ = rnfidealup0(LyRel, gel(J_vect, i),1);
         printf("Computing div(b1) + iI\n\n");
         iJ_div_a2 = idealmul(LyAbs, iJ, div_a2);
+        printf("Hej\n\n");
         // printf("Computing relative div(b1) + iI\n\n");
         // rel_ideal = rnfidealabstorel(LyRel, iJ_div_a2);
         // printf("Computing N (div(b1) + iI)\n\n");
