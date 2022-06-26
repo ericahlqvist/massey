@@ -80,6 +80,7 @@ GEN my_find_I2 (GEN LyAbs, GEN LyRel, GEN K, GEN sigma_y, GEN a2_vect, GEN J_vec
         
         if (my_SQ_MAT_equal(iJ_div_a2, idealhnf0(LyAbs, gen_1, NULL)))
         {
+            printf("Hej\n\n")
             gel(I2_vect, i) = idealhnf0(LyAbs, gen_1, NULL);
         }
         else {
