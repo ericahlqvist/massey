@@ -9,7 +9,7 @@ EXTRACFLAGS=
 #CFLAGS    = $(DBGFLAGS)
 
 CC         = /usr/bin/gcc
-CPPFLAGS   = -I. -I/NOBACKUP/ericahl/pari-lib/include
+CPPFLAGS   = -I. -I/NOBACKUP/ericahl/pari/include
 LD         = /usr/bin/gcc
 LDFLAGS    = -O3 -Wall -ffp-contract=off -fno-strict-aliasing    -Wl,--export-dynamic
 MODLD      = /usr/bin/gcc
@@ -17,9 +17,9 @@ MODLDFLAGS = -shared  $(CFLAGS) $(DLCFLAGS) -Wl,-shared
 EXTRAMODLDFLAGS = -lc -lm -L/NOBACKUP/ericahl/pari-lib/lib -lpari
 EXTRALIBS  =
 
-RUNPTH     = -Wl,-rpath "/NOBACKUP/ericahl/pari-lib/lib"
+RUNPTH     = -Wl,-rpath "/NOBACKUP/ericahl/pari/lib"
 DLCFLAGS   = -fPIC
-LIBS       = -lm -L/NOBACKUP/ericahl/pari-lib/lib -lpari
+LIBS       = -lm -L/NOBACKUP/ericahl/pari/lib -lpari
 
 RM = rm -f
 
