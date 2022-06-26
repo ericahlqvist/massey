@@ -67,7 +67,7 @@ GEN my_find_I2 (GEN LyAbs, GEN LyRel, GEN K, GEN sigma_y, GEN a2_vect, GEN J_vec
     for (i = 1; i < glength(a2_vect)+1; i++)
     {
         output(gel(a2_vect, i));
-        div_a2 = idealhnf(LyAbs, gel(a2_vect, i));
+        div_a2 = idealhnf0(LyAbs, gel(a2_vect, i), NULL);
         printf("Computing iI\n\n");
         iJ = rnfidealup0(LyRel, gel(J_vect, i),1);
         printf("Computing div(b1) + iI\n\n");
