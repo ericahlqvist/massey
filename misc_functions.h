@@ -77,7 +77,7 @@ int my_SQ_MAT_equal (GEN M1, GEN M2) {
             printf("loop2\n\n");
             if (!gequal(gel(gel(M1, i), j), gel(gel(M2, i), j))) {
                 printf("inside if\n\n");
-                return = 0;
+                return 0;
             }
         }
         
