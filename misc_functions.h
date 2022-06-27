@@ -316,7 +316,7 @@ GEN my_find_primes_under(GEN LyRel, GEN K, GEN prime_vect) {
     int l = glength(prime_vect);
     // GEN primes_under_unsorted = zerovec(l);
     GEN current_prime = pol_x(fetch_user_var("current_prime"));
-
+    printf("Hej\n\n");
     int i;
     int j;
     int test;
