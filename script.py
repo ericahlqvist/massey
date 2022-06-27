@@ -25,8 +25,8 @@ class Command(object):
             return self.process.returncode
 
 
-p = "3" # A prime > 2
-Dmod = "8" # 3, 7, 4, 8
+p = "5" # A prime > 2
+Dmod = "4" # 3, 7, 4, 8
 mod = ""
 if (Dmod == "3" or Dmod == "7"):
     mod = "8"
