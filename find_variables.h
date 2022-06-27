@@ -111,7 +111,7 @@ GEN my_find_I_prime_2 (GEN LxAbs, GEN LxRel, GEN K, GEN I_vect, GEN sigma_x, GEN
     {
         norms = my_is_principal_mod_p(K, rnfidealnormrel(LxRel, rnfidealabstorel(LxRel, gel(I_vect, i))), p);
         u = rnfeltreltoabs(LxRel, gel(rnfisnorm(T, gel(norms,1), 0),1));
-        div_u = idealhnf(LxAbs, u);
+        div_u = idealhnf0(LxAbs, u, NULL);
         i_J_prime = rnfidealup0(LxRel, gel(norms,2), 1); 
         I_prime = my_find_H90_ideal(LxAbs, LxRel, K, idealdiv(LxAbs, idealmul(LxAbs, div_u, i_J_prime), gel(I_vect, i)), sigma_x, itos(p));
         gel(I_prime_vect, i) = I_prime;

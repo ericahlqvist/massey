@@ -270,7 +270,7 @@ GEN my_find_prime_vect(GEN LyAbs, GEN sigma_y, GEN p_1, int p) {
     // printf(ANSI_COLOR_CYAN "my_find_prime_vect\n\n" ANSI_COLOR_RESET);
     pari_sp av = avma;
     GEN prime_vect = zerovec(p);
-    gel(prime_vect, 1) = idealhnf(LyAbs, p_1);
+    gel(prime_vect, 1) = idealhnf0(LyAbs, p_1, NULL);
 
     int i;
     GEN new_p = idealmul(LyAbs, idealhnf(LyAbs, gen_1), p_1);
@@ -320,7 +320,7 @@ GEN my_find_primes_under(GEN LyRel, GEN K, GEN prime_vect) {
     int i;
     int j;
     int test;
-    printf("Hej\n\n");
+    
     for (i = 2; i < l+1; i++)
     {
         current_prime = idealhnf0(K, rnfidealdown(LyRel, rnfidealabstorel(LyRel, gel(prime_vect, i))), NULL);
@@ -359,7 +359,7 @@ GEN my_sort_primes_and_es(GEN LyRel, GEN K, GEN primes_and_es_in_factorization, 
     {
         gel(primes_and_es_sorted, i) = mkvec(gen_0);
         for (j = 1; j < glength(prime_vect)+1; j++) {
-            current_prime = idealhnf(K, rnfidealdown(LyRel, rnfidealabstorel(LyRel, gel(prime_vect, j))));
+            current_prime = idealhnf0(K, rnfidealdown(LyRel, rnfidealabstorel(LyRel, gel(prime_vect, j))), NULL);
             if (my_SQ_MAT_equal(current_prime, gel(primes_under, i)))
             {
                 if (!my_QV_equal0(gel(primes_and_es_sorted, i))) {
@@ -691,7 +691,7 @@ GEN my_reduce_H1_mod (GEN LxAbs, GEN sigma_x, GEN v, GEN elem, GEN p) {
     gel(new_v, 1) = nfdiv(LxAbs, gel(v, 1), nfpow(LxAbs, elem, p));
     gel(new_v, 2) = nfmul(LxAbs, gel(v, 2), my_SM1_elt(LxAbs, sigma_x, elem));
     gel(new_v, 3) = gel(v, 3);
-    gel(new_v, 4) = idealmul(LxAbs, idealhnf(LxAbs, elem), gel(v, 4));
+    gel(new_v, 4) = idealmul(LxAbs, idealhnf0(LxAbs, elem), gel(v, 4), NULL);
 
     return new_v;
 }
