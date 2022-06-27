@@ -322,7 +322,7 @@ GEN my_find_primes_under(GEN LyRel, GEN K, GEN prime_vect) {
     int test;
     for (i = 2; i < l+1; i++)
     {
-        current_prime = idealhnf(K, rnfidealdown(LyRel, rnfidealabstorel(LyRel, gel(prime_vect, i))));
+        current_prime = idealhnf0(K, rnfidealdown(LyRel, rnfidealabstorel(LyRel, gel(prime_vect, i))), NULL);
         
         test = 1;
         for (j = 1; j < glength(primes_under)+1; j++) {
@@ -434,7 +434,6 @@ GEN my_find_H90_ideal (GEN LyAbs, GEN LyRel, GEN K, GEN iJ_div_a2, GEN sigma_y, 
     // output(primes_and_es_in_factorization);
     GEN prime_vect = gel(primes_and_es_in_factorization,1);
     GEN primes_under = my_find_primes_under(LyRel, K, prime_vect);
-    printf("Hej\n\n");
     GEN primes_and_es_by_primes_under = my_sort_primes_and_es(LyRel, K, primes_and_es_in_factorization, primes_under);
     printf("Factorization for H90 done\n\n");
     
