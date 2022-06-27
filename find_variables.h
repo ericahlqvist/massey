@@ -62,7 +62,7 @@ GEN my_find_I2 (GEN LyAbs, GEN LyRel, GEN K, GEN sigma_y, GEN a2_vect, GEN J_vec
     // GEN rel_ideal = pol_x(fetch_user_var("relative"));
     GEN iJ = pol_x(fetch_user_var("iJ"));
     GEN iJ_div_a2 = pol_x(fetch_user_var("iJ_div_a2"));
-    GEN vec_1 = zerocol(p);
+    GEN vec_1 = zerocol(2*p);
     gel(vec_1, 1) = gen_1;
     
     int i;
