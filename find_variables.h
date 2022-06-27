@@ -62,8 +62,6 @@ GEN my_find_I2 (GEN LyAbs, GEN LyRel, GEN K, GEN sigma_y, GEN a2_vect, GEN J_vec
     // GEN rel_ideal = pol_x(fetch_user_var("relative"));
     GEN iJ = pol_x(fetch_user_var("iJ"));
     GEN iJ_div_a2 = pol_x(fetch_user_var("iJ_div_a2"));
-    GEN vec_1 = zerocol(2*p);
-    gel(vec_1, 1) = gen_1;
     
     int i;
     for (i = 1; i < glength(a2_vect)+1; i++)
@@ -73,20 +71,19 @@ GEN my_find_I2 (GEN LyAbs, GEN LyRel, GEN K, GEN sigma_y, GEN a2_vect, GEN J_vec
         iJ = rnfidealup0(LyRel, gel(J_vect, i),1);
         printf("Computing div(b1) + iI\n\n");
         iJ_div_a2 = idealmul(LyAbs, iJ, div_a2);
-        output(idealhnf0(LyAbs, vec_1, NULL));
+        
         // printf("Computing relative div(b1) + iI\n\n");
         // rel_ideal = rnfidealabstorel(LyRel, iJ_div_a2);
         // printf("Computing N (div(b1) + iI)\n\n");
         // pari_printf(ANSI_COLOR_CYAN "\nN (div(b1) + iI): %Ps\n\n" ANSI_COLOR_RESET, rnfidealnormrel(LyRel, rel_ideal));
         // printf(ANSI_COLOR_YELLOW "\n----------\n" ANSI_COLOR_RESET);
         
-        int check = my_SQ_MAT_equal(iJ_div_a2, idealhnf(LyAbs, gen_1));
-        printf("HEJ\n\n");
-        if (check)
+        if (my_SQ_MAT_equal(iJ_div_a2, idealhnf(LyAbs, gen_1)))
         {
-            gel(I2_vect, i) = idealhnf0(LyAbs, vec_1, NULL);
+            gel(I2_vect, i) = idealhnf(LyAbs, gen_1);
         }
         else {
+            printf("Hej\n\n");
             gel(I2_vect, i) = my_find_H90_ideal(LyAbs, LyRel, K, iJ_div_a2, sigma_y, p);
         }
         if (my_SQ_MAT_equal(iJ_div_a2, my_SM1_ideal(LyAbs, sigma_y, gel(I2_vect, i))))
