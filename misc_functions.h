@@ -273,6 +273,7 @@ GEN my_find_prime_vect(GEN LyAbs, GEN sigma_y, GEN p_1, int p) {
     gel(prime_vect, 1) = idealhnf0(LyAbs, p_1, NULL);
 
     int i;
+    printf("Hej\n\n");
     GEN new_p = idealmul(LyAbs, idealhnf(LyAbs, gen_1), p_1);
     for (i = 1; i < p; i++)
     {
@@ -400,7 +401,7 @@ GEN my_find_primes_in_factorization(GEN LyAbs, GEN factorization) {
 
 GEN my_find_H90_ideal_single_prime (GEN LyAbs, GEN LyRel, GEN K, GEN primes, GEN es, GEN sigma_y, int p) {
     pari_sp av = avma;
-    printf("Hej\n\n");
+    
     GEN p_1 = gel(primes,1);
     GEN prime_vect = my_find_prime_vect(LyAbs, sigma_y, p_1, p);
     GEN e_vect = my_find_e_vect(LyAbs, sigma_y, prime_vect, primes, es, p);
