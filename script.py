@@ -44,7 +44,7 @@ file = open("discriminants/"+open_file)
 lines = file.readlines()
 for line in lines:
     my_str = ''.join(map(str, line))
-    command = Command("./main-sta "+p+" "+my_str)
+    command = Command("./main "+p+" "+my_str)
     code = command.run(timeout=200)
     
     # if code == -15:
