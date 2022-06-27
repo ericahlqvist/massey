@@ -448,6 +448,7 @@ GEN my_find_H90_ideal (GEN LyAbs, GEN LyRel, GEN K, GEN iJ_div_a2, GEN sigma_y, 
         // printf("my_find_H90_ideal_single_prime[%d] done", i);
         H90_ideal = idealmul(LyAbs, H90_ideal, new_ideal);
     }
+    printf("Hej\n\n");
     H90_ideal = gerepilecopy(av, H90_ideal);
     return H90_ideal;
 }
