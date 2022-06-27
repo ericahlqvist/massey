@@ -81,9 +81,9 @@ GEN my_find_I2 (GEN LyAbs, GEN LyRel, GEN K, GEN sigma_y, GEN a2_vect, GEN J_vec
         // printf(ANSI_COLOR_YELLOW "\n----------\n" ANSI_COLOR_RESET);
         
         int check = my_SQ_MAT_equal(iJ_div_a2, idealhnf(LyAbs, gen_1));
+        printf("HEJ\n\n");
         if (check)
         {
-            printf("HEJ\n\n");
             gel(I2_vect, i) = idealhnf0(LyAbs, vec_1, NULL);
         }
         else {
