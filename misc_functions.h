@@ -442,10 +442,11 @@ GEN my_find_H90_ideal (GEN LyAbs, GEN LyRel, GEN K, GEN iJ_div_a2, GEN sigma_y, 
     GEN H90_ideal = idealhnf(LyAbs, gen_1);
     GEN new_ideal = idealhnf(LyAbs, gen_1);
     int i;
-    printf("Hej\n\n");
+    
     for (i = 1; i < glength(primes_under)+1; i++)
     {
         new_ideal = my_find_H90_ideal_single_prime(LyAbs, LyRel, K, gel(gel(primes_and_es_by_primes_under, i), 1), gel(gel(primes_and_es_by_primes_under, i), 2), sigma_y, p);
+        printf("Hej\n\n");
         // printf("my_find_H90_ideal_single_prime[%d] done", i);
         H90_ideal = idealmul(LyAbs, H90_ideal, new_ideal);
     }
