@@ -430,10 +430,10 @@ GEN my_find_H90_ideal_single_prime (GEN LyAbs, GEN LyRel, GEN K, GEN primes, GEN
 GEN my_find_H90_ideal (GEN LyAbs, GEN LyRel, GEN K, GEN iJ_div_a2, GEN sigma_y, int p) {
     pari_sp av = avma;
     GEN factorization = idealfactor(LyAbs, iJ_div_a2);
-    printf("Hej\n\n");
     GEN primes_and_es_in_factorization = my_find_primes_in_factorization(LyAbs, factorization);
     // output(primes_and_es_in_factorization);
     GEN prime_vect = gel(primes_and_es_in_factorization,1);
+    printf("Hej\n\n");
     GEN primes_under = my_find_primes_under(LyRel, K, prime_vect);
     GEN primes_and_es_by_primes_under = my_sort_primes_and_es(LyRel, K, primes_and_es_in_factorization, primes_under);
     printf("Factorization for H90 done\n\n");
