@@ -691,7 +691,7 @@ GEN my_reduce_H1_mod (GEN LxAbs, GEN sigma_x, GEN v, GEN elem, GEN p) {
     gel(new_v, 1) = nfdiv(LxAbs, gel(v, 1), nfpow(LxAbs, elem, p));
     gel(new_v, 2) = nfmul(LxAbs, gel(v, 2), my_SM1_elt(LxAbs, sigma_x, elem));
     gel(new_v, 3) = gel(v, 3);
-    gel(new_v, 4) = idealmul(LxAbs, idealhnf0(LxAbs, elem), gel(v, 4), NULL);
+    gel(new_v, 4) = idealmul(LxAbs, idealhnf0(LxAbs, elem, NULL), gel(v, 4));
 
     return new_v;
 }
