@@ -216,7 +216,7 @@ GEN my_Gamma_ideal (GEN Labs, GEN sigma, GEN I, int p_int)
     int n;
     int i;
 
-    GEN Gamma_l = idealhnf(Labs, gen_1);
+    GEN Gamma_l = idealhnf0(Labs, gen_1, NULL);
     for (n = 1; n < p_int; ++n)
     {
         GEN elem_n = gcopy(I);
@@ -273,9 +273,8 @@ GEN my_find_prime_vect(GEN LyAbs, GEN sigma_y, GEN p_1, int p) {
     gel(prime_vect, 1) = idealhnf0(LyAbs, p_1, NULL);
 
     int i;
-    output(idealhnf0(LyAbs, gen_1, NULL));
-    output(p_1);
-    GEN new_p = idealmul(LyAbs, idealhnf(LyAbs, gen_1), p_1);
+    
+    GEN new_p = idealmul(LyAbs, idealhnf0(LyAbs, gen_1, NULL), p_1);
     for (i = 1; i < p; i++)
     {
         
@@ -409,14 +408,14 @@ GEN my_find_H90_ideal_single_prime (GEN LyAbs, GEN LyRel, GEN K, GEN primes, GEN
     GEN e_vect = my_find_e_vect(LyAbs, sigma_y, prime_vect, primes, es, p);
     
     
-    GEN H90_ideal = idealhnf(LyAbs, gen_1);
-    GEN new_ideal = idealhnf(LyAbs, gen_1);
+    GEN H90_ideal = idealhnf0(LyAbs, gen_1, NULL);
+    GEN new_ideal = idealhnf0(LyAbs, gen_1, NULL);
     int i;
     int j;
     // printf("HEJ\n\n");
     for (i = 2; i < glength(prime_vect)+1; i++)
     {
-        new_ideal = idealhnf(LyAbs, gen_1);
+        new_ideal = idealhnf0(LyAbs, gen_1, NULL);
         for (j = 1; j < i; j++)
         {
             // printf("p[%d]", j);
@@ -443,8 +442,8 @@ GEN my_find_H90_ideal (GEN LyAbs, GEN LyRel, GEN K, GEN iJ_div_a2, GEN sigma_y, 
     printf("Factorization for H90 done\n\n");
     
 
-    GEN H90_ideal = idealhnf(LyAbs, gen_1);
-    GEN new_ideal = idealhnf(LyAbs, gen_1);
+    GEN H90_ideal = idealhnf0(LyAbs, gen_1, NULL);
+    GEN new_ideal = idealhnf0(LyAbs, gen_1, NULL);
     int i;
     
     for (i = 1; i < glength(primes_under)+1; i++)
@@ -623,7 +622,7 @@ GEN my_get_clgp (GEN K)
     for (n = 1; n < clnr + 1; ++n) {
         exponents = gel(class_group_exp, n);
         int i;
-        current_I = idealhnf(K, gen_1);
+        current_I = idealhnf0(K, gen_1, NULL);
         for ( i = 1; i < nr_comp + 1; ++i ) {
             pow = idealpow(K, gel(Kgen, i), gel(exponents, i));
             current_I = idealmul(K, current_I, pow);
@@ -741,7 +740,7 @@ GEN my_find_I (GEN Labs, GEN K, GEN sigma, GEN i_xJ)
     if (my_QV_equal0(gel(test_vec, 1)))
     {
         printf(ANSI_COLOR_YELLOW "i_x(J) principal!\n\n" ANSI_COLOR_RESET);
-        current_I = idealhnf(Labs, gen_1);
+        current_I = idealhnf0(Labs, gen_1, NULL);
         test_found = 1;
     }
     

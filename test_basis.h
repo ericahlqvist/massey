@@ -7,10 +7,10 @@ void my_test_div_Na_pJ (GEN LxRel, GEN K, GEN my_basis, GEN p) {
     for (i = 1; i < 3; i++)
     {
         Na = rnfeltnorm(LxRel, gmael2(my_basis, i, 2));
-        div_Na = idealhnf(K, Na);
+        div_Na = idealhnf0(K, Na, NULL);
         pJ = idealpow(K, gmael2(my_basis, i, 3), p);
         sum = idealmul(K, div_Na, pJ);
-        if (my_SQ_MAT_equal(sum, idealhnf(K, gen_1)))
+        if (my_SQ_MAT_equal(sum, idealhnf0(K, gen_1, NULL)))
         {
             printf(ANSI_COLOR_GREEN "Test passed\n\n" ANSI_COLOR_RESET);
         }
@@ -33,9 +33,9 @@ void my_test_div_a_J_sm1I (GEN LxAbs, GEN LxRel, GEN sigma_x, GEN my_basis)
         GEN a_elem = gel(gel(my_basis, i),2);
         GEN J_ideal = gel(gel(my_basis, i),3);
         GEN I_ideal = gel(gel(my_basis, i),4);
-        GEN div_a_elem = idealhnf(LxAbs, a_elem);
+        GEN div_a_elem = idealhnf0(LxAbs, a_elem, NULL);
 
-        int equal = my_SQ_MAT_equal(idealmul(LxAbs, div_a_elem, idealmul(LxAbs, rnfidealup0(LxRel, J_ideal, 1), my_1MS_ideal(LxAbs, sigma_x, I_ideal))), idealhnf(LxAbs, gen_1));
+        int equal = my_SQ_MAT_equal(idealmul(LxAbs, div_a_elem, idealmul(LxAbs, rnfidealup0(LxRel, J_ideal, 1), my_1MS_ideal(LxAbs, sigma_x, I_ideal))), idealhnf0(LxAbs, gen_1, NULL));
 
         // Print for debugging
         // pari_printf("%Ps\n\n", idealmul(LxAbs, div_a_elem, idealmul(LxAbs, rnfidealup0(LxRel, J_ideal, 1), my_1MS_ideal(LxAbs, sigma_x, I_ideal))));
@@ -50,7 +50,7 @@ void my_test_div_a_J_sm1I (GEN LxAbs, GEN LxRel, GEN sigma_x, GEN my_basis)
         {
             printf (ANSI_COLOR_RED "ERROR in my_test_div_a_J_sm1I!\n" ANSI_COLOR_RESET);
             pari_printf("%Ps\nNot equal to\n", idealmul(LxAbs, div_a_elem, idealmul(LxAbs, rnfidealup0(LxRel, J_ideal, 1), my_1MS_ideal(LxAbs, sigma_x, I_ideal))));
-            pari_printf("%Ps\n\n",idealhnf(LxAbs, gen_1));
+            pari_printf("%Ps\n\n",idealhnf0(LxAbs, gen_1, NULL));
 
             pari_printf("div_a: %Ps\n\nix(J): %Ps\n\n(1-sigma_x)I: %Ps\n\n", div_a_elem, rnfidealup0(LxRel, J_ideal, 1), my_1MS_ideal(LxAbs, sigma_x, I_ideal));
 
@@ -73,10 +73,10 @@ void my_test_div_b_pI (GEN LxAbs, GEN my_basis, GEN p)
         GEN b_elem = gel(gel(my_basis, i),1);
         GEN I_ideal = gel(gel(my_basis, i),4);
 
-        GEN div_b_elem = idealhnf(LxAbs, b_elem);
+        GEN div_b_elem = idealhnf0(LxAbs, b_elem, NULL);
         // pari_printf("%Ps\n\n", idealmul(LxAbs, div_b_elem, idealpow(LxAbs, I_ideal, p)));
         // pari_printf("%Ps\n\n", idealhnf(LxAbs, gen_1));
-        if (my_SQ_MAT_equal(idealmul(LxAbs, div_b_elem, idealpow(LxAbs, I_ideal, p)),idealhnf(LxAbs, gen_1)))
+        if (my_SQ_MAT_equal(idealmul(LxAbs, div_b_elem, idealpow(LxAbs, I_ideal, p)),idealhnf0(LxAbs, gen_1, NULL)))
         {
             printf (ANSI_COLOR_GREEN "Test passed\n" ANSI_COLOR_RESET);
             // outmat(idealmul(LxAbs, div_b_elem, idealpow(LxAbs, I_ideal, p)));
@@ -85,7 +85,7 @@ void my_test_div_b_pI (GEN LxAbs, GEN my_basis, GEN p)
         {
             printf (ANSI_COLOR_RED "ERROR in my_test_div_b_pI!\n" ANSI_COLOR_RESET);
             pari_printf("%Ps\nNot equal to \n", idealmul(LxAbs, div_b_elem, idealpow(LxAbs, I_ideal, p)));
-            pari_printf("%Ps\n\n", idealhnf(LxAbs, gen_1));
+            pari_printf("%Ps\n\n", idealhnf0(LxAbs, gen_1, NULL));
             exit(0);
         }
     }

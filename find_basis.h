@@ -58,7 +58,7 @@ GEN my_find_basis (GEN Labs, GEN Lrel, GEN K, GEN sigma, GEN J_vect, GEN p)
         
         // Test relation
 
-        equal = my_SQ_MAT_equal(idealmul(Labs, idealhnf(Labs, gel(aI, 1)), idealmul(Labs, gel(ext_gens,i), my_1MS_ideal(Labs, sigma, gel(aI, 2)))), idealhnf(Labs, gen_1));
+        equal = my_SQ_MAT_equal(idealmul(Labs, idealhnf0(Labs, gel(aI, 1), NULL), idealmul(Labs, gel(ext_gens,i), my_1MS_ideal(Labs, sigma, gel(aI, 2)))), idealhnf0(Labs, gen_1, NULL));
 
         if (equal)
         {

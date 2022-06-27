@@ -78,9 +78,9 @@ GEN my_find_I2 (GEN LyAbs, GEN LyRel, GEN K, GEN sigma_y, GEN a2_vect, GEN J_vec
         // pari_printf(ANSI_COLOR_CYAN "\nN (div(b1) + iI): %Ps\n\n" ANSI_COLOR_RESET, rnfidealnormrel(LyRel, rel_ideal));
         // printf(ANSI_COLOR_YELLOW "\n----------\n" ANSI_COLOR_RESET);
         
-        if (my_SQ_MAT_equal(iJ_div_a2, idealhnf(LyAbs, gen_1)))
+        if (my_SQ_MAT_equal(iJ_div_a2, idealhnf0(LyAbs, gen_1, NULL)))
         {
-            gel(I2_vect, i) = idealhnf(LyAbs, gen_1);
+            gel(I2_vect, i) = idealhnf0(LyAbs, gen_1, NULL);
         }
         else {
             gel(I2_vect, i) = my_find_H90_ideal(LyAbs, LyRel, K, iJ_div_a2, sigma_y, p);

@@ -3,8 +3,8 @@ GEN my_find_norm_group (GEN LxAbs, GEN LxRel, GEN K, int p) {
     GEN L_clgp = bnf_get_gen(LxAbs);// my_get_clgp(LxAbs);
     int clnr = glength(L_clgp);
     GEN norm_basis_non_red = zerovec(clnr);
-    GEN norm_group = mkvec(idealhnf(K, gen_1));
-    GEN lifts = mkvec(idealhnf(LxAbs, gen_1));
+    GEN norm_group = mkvec(idealhnf0(K, gen_1, NULL));
+    GEN lifts = mkvec(idealhnf0(LxAbs, gen_1, NULL));
     GEN test_ideal;
 
     int i, j, check;
@@ -39,7 +39,7 @@ GEN my_find_p_lifts (GEN LxAbs, GEN LxRel, GEN K, GEN p) {
     GEN gens = my_find_p_gens(K, p);
     GEN i_x_Cl_K_p = zerovec(9);
 
-    gel(i_x_Cl_K_p, 1) = idealhnf(LxAbs, gen_1);
+    gel(i_x_Cl_K_p, 1) = idealhnf0(LxAbs, gen_1, NULL);
     gel(i_x_Cl_K_p, 2) = idealred(LxAbs, rnfidealup0(LxRel, gel(gens, 1), 1));
     gel(i_x_Cl_K_p, 3) = idealred(LxAbs, idealpow(LxAbs, gel(i_x_Cl_K_p, 2), gen_2));
     gel(i_x_Cl_K_p, 4) = idealred(LxAbs, rnfidealup0(LxRel, gel(gens, 2), 1));
@@ -61,7 +61,7 @@ int my_same_orbit (GEN LxAbs, GEN I1, GEN I2, GEN H) {
     for (i = 1; i < glength(H)+1; i++)
     {
         test_ideal = idealred(LxAbs, idealmul(LxAbs, diff, gel(H, i)));
-        if (my_SQ_MAT_equal(idealhnf(LxAbs, gen_1), test_ideal))
+        if (my_SQ_MAT_equal(idealhnf0(LxAbs, gen_1, NULL), test_ideal))
         {
             same = 1; 
         }
@@ -72,7 +72,7 @@ int my_same_orbit (GEN LxAbs, GEN I1, GEN I2, GEN H) {
 
 GEN my_lift_Cl_K (GEN LxAbs, GEN LxRel, GEN K) {
     GEN i_x_Cl_K = my_get_clgp(K);
-    GEN i_x_Cl_K_red = mkvec(idealhnf(LxAbs, gen_1));
+    GEN i_x_Cl_K_red = mkvec(idealhnf0(LxAbs, gen_1, NULL));
     GEN test_ideal;
     int i, j, check;
     for (i = 1; i < glength(i_x_Cl_K)+1; i++)
