@@ -83,7 +83,6 @@ GEN my_find_I2 (GEN LyAbs, GEN LyRel, GEN K, GEN sigma_y, GEN a2_vect, GEN J_vec
             gel(I2_vect, i) = idealhnf(LyAbs, gen_1);
         }
         else {
-            printf("Hej\n\n");
             gel(I2_vect, i) = my_find_H90_ideal(LyAbs, LyRel, K, iJ_div_a2, sigma_y, p);
         }
         
