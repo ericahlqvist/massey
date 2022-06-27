@@ -400,11 +400,12 @@ GEN my_find_primes_in_factorization(GEN LyAbs, GEN factorization) {
 
 GEN my_find_H90_ideal_single_prime (GEN LyAbs, GEN LyRel, GEN K, GEN primes, GEN es, GEN sigma_y, int p) {
     pari_sp av = avma;
+    printf("Hej\n\n");
     GEN p_1 = gel(primes,1);
     GEN prime_vect = my_find_prime_vect(LyAbs, sigma_y, p_1, p);
     GEN e_vect = my_find_e_vect(LyAbs, sigma_y, prime_vect, primes, es, p);
     
-    printf("Hej\n\n");
+    
     GEN H90_ideal = idealhnf(LyAbs, gen_1);
     GEN new_ideal = idealhnf(LyAbs, gen_1);
     int i;
