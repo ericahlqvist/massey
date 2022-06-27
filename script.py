@@ -26,7 +26,7 @@ class Command(object):
 
 
 p = "3" # A prime > 2
-Dmod = "4" # 3, 7, 4, 8
+Dmod = "8" # 3, 7, 4, 8
 mod = ""
 if (Dmod == "3" or Dmod == "7"):
     mod = "8"
