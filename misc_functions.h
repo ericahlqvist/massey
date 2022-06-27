@@ -67,14 +67,14 @@ int my_SQ_MAT_equal (GEN M1, GEN M2) {
     int output = 1;
     int i;
     int j;
-    printf("my_SQ_MAT\n\n");
+    
     // outmat(M1);
     // outmat(M2);
     for (i = 1; i < glength(gel(M1, 1))+1; ++i) {
-        printf("loop1\n\n");
+
         for (j = 1; j < glength(gel(M1, 1))+1; j++)
         {
-            printf("loop2\n\n");
+
             if (!gequal(gel(gel(M1, i), j), gel(gel(M2, i), j))) {
                 printf("inside if\n\n");
                 return 0;
