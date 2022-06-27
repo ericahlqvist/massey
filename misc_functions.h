@@ -71,7 +71,7 @@ int my_SQ_MAT_equal (GEN M1, GEN M2) {
     // outmat(M1);
     // outmat(M2);
     for (i = 1; i < glength(gel(M1, 1))+1; ++i) {
-        printf("loop1\n\n")
+        printf("loop1\n\n");
         for (j = 1; j < glength(gel(M1, 1))+1; j++)
         {
             printf("loop2\n\n");
