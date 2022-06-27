@@ -73,7 +73,7 @@ GEN my_find_I2 (GEN LyAbs, GEN LyRel, GEN K, GEN sigma_y, GEN a2_vect, GEN J_vec
         iJ = rnfidealup0(LyRel, gel(J_vect, i),1);
         printf("Computing div(b1) + iI\n\n");
         iJ_div_a2 = idealmul(LyAbs, iJ, div_a2);
-        output(iJ_div_a2);
+        output(idealhnf0(LyAbs, vec_1, NULL));
         // printf("Computing relative div(b1) + iI\n\n");
         // rel_ideal = rnfidealabstorel(LyRel, iJ_div_a2);
         // printf("Computing N (div(b1) + iI)\n\n");
