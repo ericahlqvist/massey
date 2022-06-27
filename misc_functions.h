@@ -312,11 +312,11 @@ GEN my_find_e_vect(GEN LyAbs, GEN sigma_y, GEN prime_vect, GEN primes, GEN es, i
 
 GEN my_find_primes_under(GEN LyRel, GEN K, GEN prime_vect) {
     pari_sp av = avma;
-    GEN primes_under = mkvec(idealhnf(K, rnfidealdown(LyRel, rnfidealabstorel(LyRel, gel(prime_vect, 1)))));
+    GEN primes_under = mkvec(idealhnf0(K, rnfidealdown(LyRel, rnfidealabstorel(LyRel, gel(prime_vect, 1))), NULL));
     int l = glength(prime_vect);
     // GEN primes_under_unsorted = zerovec(l);
     GEN current_prime = pol_x(fetch_user_var("current_prime"));
-    printf("Hej\n\n");
+    
     int i;
     int j;
     int test;
