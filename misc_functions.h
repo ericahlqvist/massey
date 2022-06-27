@@ -273,7 +273,7 @@ GEN my_find_prime_vect(GEN LyAbs, GEN sigma_y, GEN p_1, int p) {
     gel(prime_vect, 1) = idealhnf0(LyAbs, p_1, NULL);
 
     int i;
-    output(idealhnf(LyAbs, gen_1));
+    output(idealhnf0(LyAbs, gen_1, NULL));
     output(p_1);
     GEN new_p = idealmul(LyAbs, idealhnf(LyAbs, gen_1), p_1);
     for (i = 1; i < p; i++)
