@@ -26,7 +26,7 @@ class Command(object):
 
 
 p = "5" # A prime > 2
-Dmod = "4" # 3, 7, 4, 8
+Dmod = "8" # 3, 7, 4, 8
 mod = ""
 if (Dmod == "3" or Dmod == "7"):
     mod = "8"
@@ -45,7 +45,7 @@ lines = file.readlines()
 for line in lines:
     my_str = ''.join(map(str, line))
     command = Command("./main "+p+" "+my_str)
-    code = command.run(timeout=200)
+    code = command.run(timeout=300)
     
     # if code == -15:
     #     res_file = open("output/"+p+"_"+Dmod+"mod"+mod+".txt", "a")
