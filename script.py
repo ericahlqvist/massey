@@ -42,7 +42,7 @@ else:
 
 file = open("discriminants/"+open_file)
 lines = file.readlines()
-for line in lines:
+for line in lines[219:]:
     my_str = ''.join(map(str, line))
     command = Command("./main "+p+" "+my_str)
     code = command.run(timeout=300)
