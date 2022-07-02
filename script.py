@@ -25,7 +25,7 @@ class Command(object):
             return self.process.returncode
 
 
-p = "3" # A prime > 2
+p = "5" # A prime > 2
 Dmod = "7" # 3, 7, 4, 8
 mod = ""
 if (Dmod == "3" or Dmod == "7"):
@@ -42,7 +42,7 @@ else:
 
 file = open("discriminants/"+open_file)
 lines = file.readlines()
-for line in lines[1328:]:
+for line in lines[1955:]:
     my_str = ''.join(map(str, line))
     command = Command("./main "+p+" "+my_str)
     code = command.run(timeout=300)
