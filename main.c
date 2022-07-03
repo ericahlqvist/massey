@@ -33,14 +33,15 @@ main (int argc, char *argv[])
     int sec;
     int msec;
     
-    pari_init(8000000000,500000);
+    pari_init(4000000000,500000);
     // printf("Initial adress: %ld\n", avma);
     // pari_sp limit = stack_lim(avma, 1);
     
     GEN p = cgeti(DEFAULTPREC);
     GEN s = pol_x(fetch_user_var("s"));
+    // GEN x = pol_x(fetch_user_var("x"));
     GEN K, f, Kcyc, p_ClFld_pol, D_prime_vect, D;
-
+    
     p = gp_read_str(argv[1]);
     p_int = atoi(argv[1]);
     my_int = atoi(argv[2]);
@@ -49,6 +50,9 @@ main (int argc, char *argv[])
     D_prime_vect = gel(factor(D), 1);
     
     // Define K.pol
+    // f = quadpoly0(gneg(D), -1);
+    // f = gsubstpol(f, x, s);
+    // output(f);
     f = gsubgs(gsqr(s), my_int);
     printf("\n");
 
@@ -97,6 +101,9 @@ main (int argc, char *argv[])
     pari_fprintf(fptr, "{\"p\": \"%d\", \"D\": \"%d\", \"K-cyc\": \"%Ps\", \"Lx-cyc\": \"%Ps\", \"Ly-cyc\": \"%Ps\", \"Z-rk\": \"-\", \"ZM\": \"-\"},\n", p_int, my_int, Kcyc, Lx_cyc, Ly_cyc);
 
     fclose(fptr);
+
+    // pari_close();
+    // exit(0);
 
     GEN J_vect = my_find_p_gens(K, p);
 
@@ -220,7 +227,7 @@ main (int argc, char *argv[])
     
     fclose(fptr);
     
-    
+    // output(bnf_get_fu(LxAbs));
     printf(ANSI_COLOR_GREEN "Done! \n \n" ANSI_COLOR_RESET);
 
     // Close pari
