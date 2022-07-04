@@ -33,7 +33,7 @@ main (int argc, char *argv[])
     int sec;
     int msec;
     
-    pari_init(4000000000,500000);
+    pari_init(6000000000,500000);
     // printf("Initial adress: %ld\n", avma);
     // pari_sp limit = stack_lim(avma, 1);
     
@@ -110,6 +110,8 @@ main (int argc, char *argv[])
     GEN T_x = rnfisnorminit(K, rnf_get_pol(LxRel), 1);
     GEN T_y = rnfisnorminit(K, rnf_get_pol(LyRel), 1);
     
+    printf("initializers T_x and T_y found\n\n");
+
     GEN x_basis = my_find_basis_2(LxAbs, LxRel, K, sigma_x, p, J_vect, T_x);
     GEN y_basis = my_find_basis_2(LyAbs, LyRel, K, sigma_y, p, J_vect, T_y);
 
