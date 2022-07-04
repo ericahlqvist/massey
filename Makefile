@@ -1,6 +1,5 @@
 
-
-eight
+#eight
 
 # change this TARGET to compile your own programs
 TARGET = main
