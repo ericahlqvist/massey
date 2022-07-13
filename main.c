@@ -33,7 +33,7 @@ main (int argc, char *argv[])
     int sec;
     int msec;
     
-    pari_init(8000000000,500000);
+    pari_init(6000000000,500000);
     // printf("Initial adress: %ld\n", avma);
     // pari_sp limit = stack_lim(avma, 1);
     
