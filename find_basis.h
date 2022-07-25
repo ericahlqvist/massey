@@ -112,10 +112,11 @@ GEN my_find_basis_2 (GEN Labs, GEN Lrel, GEN K, GEN sigma, GEN p, GEN J_vect, GE
     GEN a_vect = zerovec(2);
   
     GEN test;
-    
+    printf("Finding basis\n\n");
     int i;
     for (i = 1; i < 3; i++)
     {
+        printf("%d\n\n", i);
         test = bnfisprincipal0(K, idealpow(K, gel(J_vect, i), p), 3);
         if (!my_QV_equal0(gel(test,1)))
         {
