@@ -50,9 +50,10 @@ GEN my_find_basis (GEN Labs, GEN Lrel, GEN K, GEN sigma, GEN J_vect, GEN p)
     GEN my_basis = zerovec(2), aJI_vect = zerovec(2);
     int nr_comp = glength(J_vect);
     int equal;
+    GEN class_group = my_get_clgp(Labs);
     for (i = 1; i < nr_comp+1; ++i)
     {
-        GEN aI = my_find_I(Labs, K, sigma, gel(ext_gens,i));
+        GEN aI = my_find_I(Labs, K, sigma, gel(ext_gens,i), class_group);
         
         GEN aJI = mkvec3(gel(aI, 1),gel(J_vect, i),gel(aI, 2));
         

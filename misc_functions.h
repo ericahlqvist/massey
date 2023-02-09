@@ -720,9 +720,9 @@ GEN my_find_p_gens (GEN K, GEN p)
 }
 
 /*
-Given J \in CL(K)_p, find a, I such that div(a)+J+(1-sigma)I 
+Given J \in CL(K)_p, find a, I such that div(a)+J+(1-sigma)I=0 
 */
-GEN my_find_I (GEN Labs, GEN K, GEN sigma, GEN i_xJ)
+GEN my_find_I (GEN Labs, GEN K, GEN sigma, GEN i_xJ, GEN class_group)
 {
     pari_sp av = avma;
     GEN current_I;
@@ -733,7 +733,6 @@ GEN my_find_I (GEN Labs, GEN K, GEN sigma, GEN i_xJ)
     
     GEN Itest;
     int test_found = 0;
-    GEN class_group = my_get_clgp (Labs);
     int n;
     
     test_vec = bnfisprincipal0(Labs, i_xJ, 1);
